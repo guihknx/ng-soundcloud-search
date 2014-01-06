@@ -16,15 +16,9 @@ Main.controller('homeController', function($scope, $http) {
 
       $scope.apiKey = apiKey;
       $scope.query = q;
-      $scope.url = 'http://api.soundcloud.com/tracks.json?';
+      $scope.url = 'http://api.soundcloud.com/tracks.json?q='+ $scope.query +'&client_id='+$scope.apiKey;
 
-      $http.get(
-        $scope.url, { 
-
-          "q" : $scope.query,
-          "client_id" : $scope.apiKey,
-
-        }).success(function(data, status) {
+      $http( { method: 'GET', url: $scope.url }).success(function(data, status) {
 
           console.log(data);
           console.log('OKTRUE');
